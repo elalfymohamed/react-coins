@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// React-router-dom v4
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// ComponentS
+import CoinDetailPage from "./pages/CoinDetailPage";
+import CoinSummaryPage from "./pages/CoinSummaryPage";
+import Header from "./components/Header";
+import { WatchListProvider } from "./context/watchListContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WatchListProvider>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={CoinSummaryPage} />
+          <Route path="/CoinDetailPage" component={CoinDetailPage} />
+        </Switch>
+      </Router>
+    </WatchListProvider>
   );
 }
 
