@@ -4,7 +4,7 @@ import CoinList from "../components/CoinList";
 const CoinSummaryPage = () => {
   return (
     <div className="container">
-      <AddCoin />
+      {/* <AddCoin /> */}
       <CoinList />
     </div>
   );
