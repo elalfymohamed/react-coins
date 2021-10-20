@@ -83,7 +83,11 @@ const Coin = ({ coin }) => {
         style={{ width: "70px" }}
       >
         <span
-          className={coin.change_percentage_24h > 0 ? "text-green" : "text-red"}
+          className={
+            coin.market_cap_change_percentage_24h > 0
+              ? "text-green"
+              : "text-red"
+          }
           data-24h="true"
           style={
             coin.market_cap_change_percentage_24h > 0

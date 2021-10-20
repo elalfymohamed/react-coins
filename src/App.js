@@ -16,8 +16,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={CoinSummaryPage} />
-          <Route path="/CoinDetailPage" component={CoinDetailPage} />
-          <Route path="/PortfolioPage" component={PortfolioPage} />
+          <Route path="/coinDetailPage" component={CoinDetailPage} />
+          <Route path="/portfolioPage" component={PortfolioPage} />
         </Switch>
       </Router>
     </WatchListProvider>

@@ -1,12 +1,17 @@
-import AddCoin from "../components/AddCoin";
+import * as React from "react";
+
+// components
 import CoinList from "../components/CoinList";
+import Message from "../contents/Message";
 
 const CoinSummaryPage = () => {
   return (
-    <div className="container">
-      {/* <AddCoin /> */}
-      <CoinList />
-    </div>
+    <>
+      <Message />
+      <section className="container">
+        <CoinList />
+      </section>
+    </>
   );
 };
 

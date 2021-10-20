@@ -5,10 +5,17 @@ export const WatchListContext = createContext();
 
 export const WatchListProvider = ({ children }) => {
   // state hook
-  const [watchList, setWatchList] = useState([]);
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isPortfolio, setIsPortfolio] = useState([]);
+  const [showMessageAdd, setShowMessageAdd] = useState({
+    show: false,
+    coinName: "",
+  });
+  const [showMessageRemove, setShowMessageRemove] = useState({
+    show: false,
+    coinName: "",
+  });
 
   // add item to portfolio array
   const addToPortfolio = (coinsId) => {
@@ -19,23 +26,22 @@ export const WatchListProvider = ({ children }) => {
     );
     // if not in portfolio, add to portfolio
     setIsPortfolio(
-      isPort
-        ? isPortfolio
-        : [...isPortfolio, { ...item, coinsId: 1, favorite: true }]
+      isPort ? isPortfolio : [...isPortfolio, { ...item, favorite: true }]
     );
+    setShowMessageAdd({
+      show: true,
+      coinName: item.name,
+    });
   };
 
   // remove item from portfolio array
   const removeFromPortfolio = (coinsId) => {
-    return {
-      isPortfolio: isPortfolio.filter((prod) => prod.id !== coinsId.id),
-    };
-    // console.log("isPortfolio");
-  };
-  console.log(isPortfolio);
-  //  get Watch List
-  const getWatchList = () => {
-    coins.map((coin) => setWatchList(coin.name));
+    const removeFP = isPortfolio.filter((prod) => prod.id !== coinsId.id);
+    setIsPortfolio(removeFP);
+    setShowMessageRemove({
+      show: true,
+      coinName: coinsId.name,
+    });
   };
 
   // Number With Commas Function
@@ -60,19 +66,41 @@ export const WatchListProvider = ({ children }) => {
       setIsLoading(false);
     };
     fetchData();
-    getWatchList();
   }, []);
+
+  // useEffect hook to show message
+  useEffect(() => {
+    // if check is showMessageAdd is true, set showMessageAdd to false after 2 seconds
+    if (showMessageAdd.show) {
+      setTimeout(() => {
+        setShowMessageAdd({
+          show: false,
+          coinName: "",
+        });
+      }, 2000);
+    }
+    // if check is showMessageRemove is true, set showMessageRemove to false after 2 seconds
+    if (showMessageRemove.show) {
+      setTimeout(() => {
+        setShowMessageRemove({
+          show: false,
+          coinName: "",
+        });
+      }, 2000);
+    }
+  }, [showMessageAdd.show, showMessageRemove.show]);
 
   return (
     <WatchListContext.Provider
       value={{
         isLoading,
         coins,
-        watchList,
         numberWithCommas,
         addToPortfolio,
         isPortfolio,
         removeFromPortfolio,
+        showMessageAdd,
+        showMessageRemove,
       }}
     >
       {children}
