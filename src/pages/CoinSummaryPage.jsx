@@ -5,6 +5,8 @@ import CoinList from "../components/CoinList";
 import Message from "../contents/Message";
 
 const CoinSummaryPage = () => {
+  console.log("CoinSummaryPage");
+
   return (
     <>
       <Message />

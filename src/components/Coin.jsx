@@ -44,7 +44,7 @@ const Coin = ({ coin }) => {
         {coin.market_cap_rank}
       </td>
       <td className="py-0 " style={{ minWidth: "100px" }}>
-        <Link to={`/coin/${coin.id}`}>
+        <Link to={`/coins/${coin.id}`}>
           <div className="d-flex flex-row me-4 ">
             <div>
               <img

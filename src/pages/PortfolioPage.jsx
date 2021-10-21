@@ -49,7 +49,7 @@ const PortfolioPage = () => {
                     src={item.image}
                     alt={item.symbol}
                   />
-                  <Link to={`/details/${item.id}`}>
+                  <Link to={`/coins/${item.id}`}>
                     <p className="card-text fs-6 mt-2">{item.name}</p>
                   </Link>
                 </div>

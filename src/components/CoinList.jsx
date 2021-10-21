@@ -14,6 +14,7 @@ const CoinList = () => {
   }
   return (
     <>
+      <hr />
       <div className="coingecko-table">
         <div className="d-block w-100 overflow-hidden">
           <table
